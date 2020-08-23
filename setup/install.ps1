@@ -4,8 +4,8 @@
 
 # TODO: Check OS type and ensure running on windows
 
-$account = "patevs"
-$repo    = "powershell-profile"
+$account = "fcenobi"
+$repo    = "pwsh-profile"
 $branch  = "master"
 
 $pwshProfileTempDir = Join-Path $env:TEMP "powershell-profile"
