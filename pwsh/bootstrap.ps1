@@ -5,6 +5,8 @@
 # TODO: Check current powershell version and reload shell
 
 $profileDir = Split-Path -parent $profile
+#core   C:\Users\xxx\Documenti\PowerShell 
+#legacy C:\Users\xxx\Documenti\WindowsPowerShell
 $componentDir = Join-Path $profileDir "components"
 
 New-Item $profileDir -ItemType Directory -Force -ErrorAction SilentlyContinue
