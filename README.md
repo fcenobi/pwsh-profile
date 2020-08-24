@@ -25,7 +25,7 @@ cd pwsh
 To install these dotfiles from `PowerShell` without Git:
 
 ```powershell
-iex ((new-object net.webclient).DownloadString('https://raw.github.com/patevs/powershell-profile/master/setup/install.ps1'))
+iex ((new-object net.webclient).DownloadString('https://raw.github.com/fcenobi/pwsh-profile/master/setup/install.ps1'))
 ```
 
 To update later on, just run that command again.
