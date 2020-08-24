@@ -8,7 +8,7 @@ $account = "fcenobi"
 $repo    = "pwsh-profile"
 $branch  = "master"
 
-$pwshProfileTempDir = Join-Path $env:TEMP "powershell-profile"
+$pwshProfileTempDir = Join-Path $env:TEMP "pwsh-profile"
 if (![System.IO.Directory]::Exists($pwshProfileTempDir)) {[System.IO.Directory]::CreateDirectory($pwshProfileTempDir)}
 $sourceFile = Join-Path $pwshProfileTempDir "powershell-profile.zip"
 $pwshProfileInstallDir = Join-Path $pwshProfileTempDir "$repo-$branch"
@@ -62,7 +62,7 @@ Push-Location "$pwshProfileInstallDir\pwsh"
 & .\bootstrap.ps1
 Pop-Location
 
-$newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
+$newProcess = new-object System.Diagnostics.ProcessStartInfo "pwsh";
 $newProcess.Arguments = "-nologo";
 [System.Diagnostics.Process]::Start($newProcess);
 exit
