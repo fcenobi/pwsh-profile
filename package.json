@@ -2,11 +2,11 @@
   "name": "powershell-profile",
   "version": "0.4.0",
   "description": "PowerShell Script Template",
-  "author": "PatEvs",
+  "author": "fcenobi",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patevs/powershell-profile.git"
+    "url": "git+https://github.com/fcenobi/pwsh-profile.git"
   },
   "scripts": {
     "release": "np",
