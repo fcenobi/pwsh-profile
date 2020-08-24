@@ -11,7 +11,7 @@
 Clone the repository:
 
 ```sh
-git clone https://github.com/patevs/powershell-profile.git
+git clone https://github.com/fcenobi/pwsh-profile.git
 cd powershell-profile
 # Install `PowerShell` profile:
 cd pwsh
