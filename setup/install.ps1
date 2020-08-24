@@ -10,7 +10,7 @@ $branch  = "master"
 
 $pwshProfileTempDir = Join-Path $env:TEMP "pwsh-profile"
 if (![System.IO.Directory]::Exists($pwshProfileTempDir)) {[System.IO.Directory]::CreateDirectory($pwshProfileTempDir)}
-$sourceFile = Join-Path $pwshProfileTempDir "powershell-profile.zip"
+$sourceFile = Join-Path $pwshProfileTempDir "pwsh-profile.zip"
 $pwshProfileInstallDir = Join-Path $pwshProfileTempDir "$repo-$branch"
 
 
