@@ -21,10 +21,10 @@ function Test-Elevated {
 
 # Produce UTF-8 by default
 # https://news.ycombinator.com/item?id=12991690
-# $PSDefaultParameterValues["Out-File:Encoding"] = "utf8"
+ $PSDefaultParameterValues["Out-File:Encoding"] = "utf8"
 
 # https://technet.microsoft.com/en-us/magazine/hh241048.aspx
-$MaximumHistoryCount = 10000;
+$MaximumHistoryCount = 20000;
 
 # Import PSReadLine module (if installed) for Proper history, tab completion, etc
 if (Get-Module -ListAvailable PSReadLine -ErrorAction SilentlyContinue) {
@@ -101,10 +101,10 @@ function prompt {
   Write-Host " :" -NoNewline -ForegroundColor DarkGray
 
   # Write posh-git status
-  Write-VcsStatus
-
-  $LastExitCode = $origLastExitCode
-  "`n$('>' * ($nestedPromptLevel + 1)) "
+#  Write-VcsStatus
+#
+#  $LastExitCode = $origLastExitCode
+#  "`n$('>' * ($nestedPromptLevel + 1)) "
 
   # Wakatime Heartbeat
   # https://github.com/wakatime/wakatime/issues/126#issuecomment-442892264
