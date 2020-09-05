@@ -1,0 +1,14 @@
+import-module CimCmdlets  -Global -FORCE -ErrorAction Continue
+import-module Microsoft.PowerShell.Archive  -Global -FORCE -ErrorAction Continue
+import-module Microsoft.PowerShell.Diagnostics  -Global -FORCE -ErrorAction Continue
+import-module Microsoft.PowerShell.Host  -Global -FORCE -ErrorAction Continue
+import-module Microsoft.PowerShell.Management  -Global -FORCE -ErrorAction Continue
+import-module Microsoft.PowerShell.Security  -Global -FORCE -ErrorAction Continue
+import-module Microsoft.PowerShell.Utility  -Global -FORCE -ErrorAction Continue
+import-module Microsoft.WSMan.Management  -Global -FORCE -ErrorAction Continue
+import-module PackageManagement  -Global -FORCE -ErrorAction Continue
+import-module PowerShellGet  -Global -FORCE -ErrorAction Continue
+import-module PSDesiredStateConfiguration  -Global -FORCE -ErrorAction Continue
+import-module PSDiagnostics  -Global -FORCE -ErrorAction Continue
+import-module PSReadLine  -Global -FORCE -ErrorAction Continue
+import-module ThreadJob  -Global -FORCE -ErrorAction Continue
