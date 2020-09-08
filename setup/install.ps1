@@ -8,6 +8,14 @@ $account = "fcenobi"
 $repo    = "pwsh-profile"
 $branch  = "master"
 
+Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force
+if(!(Test-Path -Path $profile  )){New-Item -path $profile -type file -force}
+if(!(Test-Path -Path $profile.AllUsersAllHosts  )){New-Item -path $profile.AllUsersAllHosts -type file -force}
+if(!(Test-Path -Path $profile.AllUsersCurrentHost  )){New-Item -path $profile.AllUsersCurrentHost -type file -force}
+if(!(Test-Path -Path $profile.CurrentUserAllHosts  )){New-Item -path $profile.CurrentUserAllHosts -type file -force}
+if(!(Test-Path -Path $profile.CurrentUserCurrentHost )){New-Item -path $profile.CurrentUserCurrentHost -type file -force}
+
+
 $pwshProfileTempDir = Join-Path $env:TEMP "pwsh-profile"
 if (![System.IO.Directory]::Exists($pwshProfileTempDir)) {[System.IO.Directory]::CreateDirectory($pwshProfileTempDir)}
 $sourceFile = Join-Path $pwshProfileTempDir "pwsh-profile.zip"
