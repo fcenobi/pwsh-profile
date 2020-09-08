@@ -12,3 +12,7 @@ scoop install alias-additions
 scoop install 7zip
 scoop install innounp
 scoop install wixtoolset
+
+taskkill /F /IM explorer.exe 
+explorer.exe 
+
