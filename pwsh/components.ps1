@@ -19,7 +19,7 @@ Push-Location (Join-Path (Split-Path -parent $profile) "components")
 . .\npm.ps1
 . .\scoop.ps1
 . .\yarn.ps1
-. .\admintolboox.ps1
+. .\admintoolbox.ps1
 
 
 Pop-Location
