@@ -10,5 +10,5 @@ import-module PackageManagement  -Global -FORCE -ErrorAction Continue
 import-module PowerShellGet  -Global -FORCE -ErrorAction Continue
 import-module PSDesiredStateConfiguration  -Global -FORCE -ErrorAction Continue
 import-module PSDiagnostics  -Global -FORCE -ErrorAction Continue
-import-module PSReadLine  -Global -FORCE -ErrorAction Continue
+#import-module PSReadLine  -Global -FORCE -ErrorAction Continue
 import-module ThreadJob  -Global -FORCE -ErrorAction Continue
