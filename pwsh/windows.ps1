@@ -30,15 +30,15 @@ Write-Host "Configuring System..." -ForegroundColor "Yellow"
 #Remove-Variable myIdentity
 
 # Enable Developer Mode
-#Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" "AllowDevelopmentWithoutDevLicense" 1
+Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" "AllowDevelopmentWithoutDevLicense" 1
 # Bash on Windows
-#Enable-WindowsOptionalFeature -Online -All -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
+Enable-WindowsOptionalFeature -Online -All -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
 
 ###############################################################################
 ### Privacy                                                                   #
 ###############################################################################
 
-<#
+#<#
 Write-Host "Configuring Privacy..." -ForegroundColor "Yellow"
 
 # General: Don't let apps use advertising ID for experiences across apps: Allow: 1, Disallow: 0
@@ -76,13 +76,13 @@ Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliver
 # Build 1709
 # Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" "Value" "Deny"
 # Build 1903
-Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam" "Value" "Deny"
+#Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam" "Value" "Deny"
 
 # Microphone: Don't let apps use microphone: Allow, Deny
 # Build 1709
 #Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" "Value" "Deny"
 # Build 1903
-Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone" "Value" "Deny"
+#Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone" "Value" "Deny"
 
 # Notifications: Don't let apps access notifications: Allow, Deny
 # Build 1511
@@ -206,7 +206,7 @@ Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliver
 ### Devices, Power, and Startup                                               #
 ###############################################################################
 
-<#
+#<#
 Write-Host "Configuring Devices, Power, and Startup..." -ForegroundColor "Yellow"
 
 # Sound: Disable Startup Sound
@@ -230,7 +230,7 @@ Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" "Au
 ### Explorer, Taskbar, and System Tray                                        #
 ###############################################################################
 
-<#
+#<#
 Write-Host "Configuring Explorer, Taskbar, and System Tray..." -ForegroundColor "Yellow"
 
 # Ensure necessary registry paths
@@ -263,12 +263,13 @@ Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" "BingS
 # Taskbar: Disable Cortana
 Set-ItemProperty "HKLM:\Software\Policies\Microsoft\Windows\Windows Search" "AllowCortana" 0
 
-# SysTray: Hide the Action Center, Network, and Volume icons
-Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" "HideSCAHealth" 1  # Action Center
-Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" "HideSCANetwork" 1 # Network
-Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" "HideSCAVolume" 1  # Volume
+# SysTray: Hide the Action Center, Network, Clock, and Volume icons
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" 	"HideSCAHealth" 		1  	# Action Center
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" 	"HideSCANetwork" 		0 	# Network
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" 	"HideSCAVolume" 		0  	# Volume
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"	"HideClock" 			0 	# Clock
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"	"NoDriveTypeAutoRun"	145 # NoDriveTypeAutoRun
 #Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" "HideSCAPower" 1  # Power
-
 # Taskbar: Show colors on Taskbar, Start, and SysTray: Disabled: 0, Taskbar, Start, & SysTray: 1, Taskbar Only: 2
 Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" "ColorPrevalence" 1
 
@@ -297,7 +298,7 @@ Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\SettingSync\Gr
 ### Default Windows Applications                                              #
 ###############################################################################
 
-<#
+#
 Write-Host "Configuring Default Windows Applications..." -ForegroundColor "Yellow"
 
 # Uninstall 3D Builder
@@ -413,8 +414,8 @@ Get-AppxPackage "SpotifyAB.SpotifyMusic" -AllUsers | Remove-AppxPackage
 Get-AppXProvisionedPackage -Online | Where DisplayNam -like "SpotifyAB.SpotifyMusic" | Remove-AppxProvisionedPackage -Online
 
 # Uninstall StickyNotes
-Get-AppxPackage "Microsoft.MicrosoftStickyNotes" -AllUsers | Remove-AppxPackage
-Get-AppXProvisionedPackage -Online | Where DisplayNam -like "Microsoft.MicrosoftStickyNotes" | Remove-AppxProvisionedPackage -Online
+#Get-AppxPackage "Microsoft.MicrosoftStickyNotes" -AllUsers | Remove-AppxPackage
+#Get-AppXProvisionedPackage -Online | Where DisplayNam -like "Microsoft.MicrosoftStickyNotes" | Remove-AppxProvisionedPackage -Online
 
 # Uninstall Sway
 Get-AppxPackage "Microsoft.Office.Sway" -AllUsers | Remove-AppxPackage
@@ -529,7 +530,7 @@ Set-ItemProperty "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\Delivery
 ### Windows Defender                                                          #
 ###############################################################################
 
-<#
+#<#
 Write-Host "Configuring Windows Defender..." -ForegroundColor "Yellow"
 
 # Disable Cloud-Based Protection: Enabled Advanced: 2, Enabled Basic: 1, Disabled: 0
@@ -560,7 +561,7 @@ Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Setti
 ### Disk Cleanup (CleanMgr.exe)                                               #
 ###############################################################################
 
-<#
+#<#
 Write-Host "Configuring Disk Cleanup..." -ForegroundColor "Yellow"
 
 $diskCleanupRegPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\"
@@ -625,7 +626,7 @@ Set-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\Tru
 
 }
 
-<#
+#<#
 # Dimensions of window, in characters: 8-byte; 4b height, 4b width. Max: 0x7FFF7FFF (32767h x 32767w)
 Set-ItemProperty $_ "WindowSize"           0x002D0078 # 45h x 120w
 # Dimensions of screen buffer in memory, in characters: 8-byte; 4b height, 4b width. Max: 0x7FFF7FFF (32767h x 32767w)
@@ -641,7 +642,7 @@ Set-ItemProperty $_ "FontSize"             0x00110000 # 17px height x auto width
 # Boldness of font: Raster=(Normal: 0, Bold: 1), TrueType=(100-900, Normal: 400)
 Set-ItemProperty $_ "FontWeight"           400
 # Number of commands in history buffer
-Set-ItemProperty $_ "HistoryBufferSize"    50
+Set-ItemProperty $_ "HistoryBufferSize"    999
 # Discard duplicate commands
 Set-ItemProperty $_ "HistoryNoDup"         1
 # Typing Mode: Overtype: 0, Insert: 1
@@ -673,7 +674,7 @@ Set-ItemProperty $_ "ColorTable12"         $(Convert-ConsoleColor "#cf6a4c") # R
 Set-ItemProperty $_ "ColorTable13"         $(Convert-ConsoleColor "#f0a0c0") # Magenta (D)
 Set-ItemProperty $_ "ColorTable14"         $(Convert-ConsoleColor "#fad07a") # Yellow (E)
 Set-ItemProperty $_ "ColorTable15"         $(Convert-ConsoleColor "#e8e8d3") # White (F)
-}
+#}
 
 # Customizing PoSh syntax
 # Theme: Jellybeans
@@ -702,3 +703,115 @@ Set-PSReadlineOption -Colors @{
 Write-Output "Done. Note that some of these changes require a logout/restart to take effect."
 
 # EOF #
+
+# SIG # Begin signature block
+# MIIUZgYJKoZIhvcNAQcCoIIUVzCCFFMCAQExDzANBglghkgBZQMEAgEFADB5Bgor
+# BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCAu5xNtWe2e/QlH
+# S7A1q2OuNVEwLtaJVMxrPPY9DLDv0qCCD1MwggMuMIICFqADAgECAhBN/MLpeivG
+# gk7YFhWTpn1NMA0GCSqGSIb3DQEBDQUAMB8xHTAbBgNVBAMMFFdpbmRvd3MgQWRt
+# aW4gQ2VudGVyMB4XDTIwMDgxOTIzMzgxN1oXDTMwMDgxOTIzMzgxN1owHzEdMBsG
+# A1UEAwwUV2luZG93cyBBZG1pbiBDZW50ZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IB
+# DwAwggEKAoIBAQDbaUTAmKYrZoQ4KlGHDLP0l8KBeBsNKo+wnTGifjk6Pmf3hi4m
+# XiYX3H4BR39Tvwm4A2AcriUgN2Jq0XjcqcjpEaRZOtjWy6PAFYZ4QyfFifAUtfs8
+# T/sId6JHys2s8oNatJVwIpGIviaqpyFpes8RHbHsxg4Yyd9WwV0FEm6DLCPHW9fM
+# NeF+Ye9PRuKzSMBQSFCGv9sk7jF1XBmb64ZV6dzuLUyC871MqqoODDBahatsnJ9E
+# +4GR5JEtdUw69MZQ5gyYzlVZ/n83IBSgqYFurb1rbVV18v3//7gXxxbdsaaddLzA
+# icP3TmlfCAMLKMegpnb+0ylQEIQWuROn/8j5AgMBAAGjZjBkMA4GA1UdDwEB/wQE
+# AwICtDATBgNVHSUEDDAKBggrBgEFBQcDATAeBgNVHREEFzAVggh3MTAtNTAwboIJ
+# bG9jYWxob3N0MB0GA1UdDgQWBBSMd1qShkCXOs8OwJpf+bEiLrk32jANBgkqhkiG
+# 9w0BAQ0FAAOCAQEAbDHoo4Zc+yBq79lG+eO2O+N9MpwIkPw1RZxoI6dgot7kaR+9
+# A9ZQom2d7jXHnuNYj+M4A3Yk12Ps4/hoLUUAF3PSQOr0Tli2QXXkryc0mqDUBfms
+# XdN2xop09u8uQKOcAZwm1t+pcyKgOZtkUc+92xwL9jS7dTYwbKDXAmrfbHXtqqdj
+# qtPBUOOhhjhco7hU0BWpt0G9b4fxjsifIonk+aDOOYZGNQGVA6lCZ+T7Zqsm7Gl7
+# KzPuyKeiGcaQkarSwkCCnZ9UtYxMEFv0dePpoxHKasjghD38rEegbhrQjPwDXhm1
+# yjPBo/mGVYnZj9LwlWSqSRUwpwQufFhjSy1lADCCAzowggIioAMCAQICEGScKRIp
+# 1L66RgurHfOyi3cwDQYJKoZIhvcNAQENBQAwHzEdMBsGA1UEAwwUV2luZG93cyBB
+# ZG1pbiBDZW50ZXIwHhcNMjAwODE5MjMzODIyWhcNMzAwODE5MjMzODIyWjAqMSgw
+# JgYDVQQDDB9XaW5kb3dzIEFkbWluIENlbnRlciBFbmNyeXB0aW9uMIIBIjANBgkq
+# hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnA1SqLJv2oaIzFGZqDuZtEeIbsKGA/+p
+# BTsXzRmqNmTYql6q8nKwM+lDSpgshcyHKlSQB+cxB3oFR+f7dOBNR0BF0E1NtUYw
+# W3uXmhOQAW6GERnBxUofEbA2pNyHZrK3sCqaDHlFYaekRPzrbp9wTIrhaxK0Ygdq
+# qakMLZ+vDYpiO7lHNgCpnxbBnyJuRMvQfQMmjdBZKXXyyr9/SqkGtVRh2PgBeaJ+
+# ZgkZyIQCEs24Pu30YiQBntp8JEjdbekrIJ4OH1l7iE+q9ur29m/9PLzob1uS9csS
+# KcJZ//OsxyEbyeHQXNRm3dnoKGNAtQstpeYIk2jdzUPz2O5hhG/eiQIDAQABo2cw
+# ZTAOBgNVHQ8BAf8EBAMCBJAwEwYDVR0lBAwwCgYIKwYBBQUHAwMwHwYDVR0jBBgw
+# FoAUjHdakoZAlzrPDsCaX/mxIi65N9owHQYDVR0OBBYEFPa7Sv5t0pQfqjOhX5qI
+# hBz3OGiWMA0GCSqGSIb3DQEBDQUAA4IBAQBW1vNmXC1kPJzm0p2XYe36WX/3hOmt
+# ZX2SiYBpa6proqFoNrP523Gl0ZCeqwf9vlKFRpZVx2eW8AAdJRAw47zZ5LGgq5xf
+# aG4u7Eug0kE2S2CvJY8776prZ2GnLcXQPP4vmwr1X/b/XADdevJWI6DRlGNZ2XUn
+# ZmC3xAVbeSzc66W9ZJWuU9Xf7sSrtefmdV9n/ilokehELIiiKPTCr8FMsHEBHMw1
+# EkFc4n/jl4vK2ORvsKJ01jViJxp3yU2OQdhuQWzUcia5ndHIMAdvno6Yk7f+vy8j
+# Z0EAL4/kZ76HxrGgbHSh32hk9gl/L3VFZyA8OlYzsJvHBMhePZt4/0nRMIIEFTCC
+# Av2gAwIBAgILBAAAAAABMYnGUAQwDQYJKoZIhvcNAQELBQAwTDEgMB4GA1UECxMX
+# R2xvYmFsU2lnbiBSb290IENBIC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzAR
+# BgNVBAMTCkdsb2JhbFNpZ24wHhcNMTEwODAyMTAwMDAwWhcNMjkwMzI5MTAwMDAw
+# WjBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8G
+# A1UEAxMoR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBTSEEyNTYgLSBHMjCC
+# ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKqbjsOrEVElAbaWlOJP2MEI
+# 9kYj2UXFlZdbqxq/0mxXyTMGH6APxjx+U0h6v52Hnq/uw4xH4ULs4+OhSmwMF8Sm
+# wbnNW/EeRImO/gveIVgT7k3IxWcLHLKz8TR2kaLLB203xaBHJgIVpJCRqXme1+tX
+# nSt8ItgU1/EHHngiNmt3ea+v+X+OTuG1CDH96u1LcWKMI/EDOY9EebZ2A1eerS8I
+# RtzSjLz0jnTOyGhpUXYRiw9dJFsZVD0mzECNgicbWSB9WfaTgI74Kjj9a6BAZR9X
+# dsxbjgRPLKjbhFATT8bci7n43WlMiOucezAm/HpYu1m8FHKSgVe3dsnYgAqAbgkC
+# AwEAAaOB6DCB5TAOBgNVHQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAd
+# BgNVHQ4EFgQUkiGnSpVdZLCbtB7mADdH5p1BK0wwRwYDVR0gBEAwPjA8BgRVHSAA
+# MDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9z
+# aXRvcnkvMDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5u
+# ZXQvcm9vdC1yMy5jcmwwHwYDVR0jBBgwFoAUj/BLf6guRSSuTVD6Y5qL3uLdG7ww
+# DQYJKoZIhvcNAQELBQADggEBAARWgkp80M7JvzZm0b41npNsl+gGzjEYWflsQV+A
+# LsBCJbgYx/zUsTfEaKDPKGoDdEtjl4V3YTvXL+P1vTOikn0RH56KbO8ssPRijTZz
+# 0RY28bxe7LSAmHj80nZ56OEhlOAfxKLhqmfbs5xz5UAizznO2+Z3lae7ssv2GYad
+# n8jUmAWycW9Oda7xPWRqO15ORqYqXQiS8aPzHXS/Yg0jjFwqOJXSwNXNz4jaHyi1
+# uoFpZCq1pqLVc6/cRtsErpHXbsWYutRHxFZ0gEd4WIy+7yv97Gy/0ZT3v1Dge+CQ
+# /SAYeBgiXQgujBygl/MdmX2jnZHTBkROBG56HCDjNvC2ULkwggTGMIIDrqADAgEC
+# AgwkVLh/HhRTrTf6oXgwDQYJKoZIhvcNAQELBQAwWzELMAkGA1UEBhMCQkUxGTAX
+# BgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExMTAvBgNVBAMTKEdsb2JhbFNpZ24gVGlt
+# ZXN0YW1waW5nIENBIC0gU0hBMjU2IC0gRzIwHhcNMTgwMjE5MDAwMDAwWhcNMjkw
+# MzE4MTAwMDAwWjA7MTkwNwYDVQQDDDBHbG9iYWxTaWduIFRTQSBmb3IgTVMgQXV0
+# aGVudGljb2RlIGFkdmFuY2VkIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw
+# ggEKAoIBAQDZeGGhlq4S/6P/J/ZEYHtqVi1n41+fMZIqSO35BYQObU4iVsrYmZeO
+# acqfew8IyCoraNEoYSuf5Cbuurj3sOxeahviWLW0vR0J7c3oPdRm/74iIm02Js8R
+# eJfpVQAow+k3Tr0Z5ReESLIcIa3sc9LzqKfpX+g1zoUTpyKbrILp/vFfxBJasfcM
+# QObSoOBNaNDtDAwQHY8FX2RV+bsoRwYM2AY/N8MmNiWMew8niFw4MaUB9l5k3oPA
+# FFzg59JezI3qI4AZKrNiLmDHqmfWs0DuUn9WDO/ZBdeVIF2FFUDPXpGVUZ5GGheR
+# vsHAB3WyS/c2usVUbF+KG/sNKGHIifAVAgMBAAGjggGoMIIBpDAOBgNVHQ8BAf8E
+# BAMCB4AwTAYDVR0gBEUwQzBBBgkrBgEEAaAyAR4wNDAyBggrBgEFBQcCARYmaHR0
+# cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADAW
+# BgNVHSUBAf8EDDAKBggrBgEFBQcDCDBGBgNVHR8EPzA9MDugOaA3hjVodHRwOi8v
+# Y3JsLmdsb2JhbHNpZ24uY29tL2dzL2dzdGltZXN0YW1waW5nc2hhMmcyLmNybDCB
+# mAYIKwYBBQUHAQEEgYswgYgwSAYIKwYBBQUHMAKGPGh0dHA6Ly9zZWN1cmUuZ2xv
+# YmFsc2lnbi5jb20vY2FjZXJ0L2dzdGltZXN0YW1waW5nc2hhMmcyLmNydDA8Bggr
+# BgEFBQcwAYYwaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL2dzdGltZXN0YW1w
+# aW5nc2hhMmcyMB0GA1UdDgQWBBTUh7iN5uVAPJ1aBmPGRYTZ3bscwzAfBgNVHSME
+# GDAWgBSSIadKlV1ksJu0HuYAN0fmnUErTDANBgkqhkiG9w0BAQsFAAOCAQEAJHJQ
+# pQy8QAmmwfTVgmpOQV/Ox4g50+R8+SJsOHi49Lr3a+Ek6518zUisi+y1dkyP3IJp
+# CJbnuuFntvCmvxgIQuHrzRlYOaURYSPWGdcA6bvS+V9B+wQ+/oogYAzRTyNaGRoY
+# 79jG3tZfVKF6k+G2d4XA+7FGxAmuL1P7lZyOJuJK5MTmPDXvusbZucXNzQebY7s9
+# D2G8VXwjELWMiqPSaEWxQLqg3TwbFUC4SXhv5ZTAbVZLPPYSKtSF80gTBeG7MEUK
+# Qbd8km6+TpJggspbZOZV09IH3p1fm6EB7Zvww127GfAYDJqgHOlqCAs96WaXp3Ue
+# D78o1wkjDeIW+rrzNDGCBGkwggRlAgEBMDMwHzEdMBsGA1UEAwwUV2luZG93cyBB
+# ZG1pbiBDZW50ZXICEGScKRIp1L66RgurHfOyi3cwDQYJYIZIAWUDBAIBBQCgTDAZ
+# BgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAvBgkqhkiG9w0BCQQxIgQg2i5FviH5
+# FL+pmb8YU2FCo00+pxtmTlZsPohj9d8PynAwDQYJKoZIhvcNAQEBBQAEggEAPdHT
+# wc4FZOaxUcb7PFruhjQTA3+qQD81y4l8JNc1HIfkcQreER9TSImwBu/TB8bmDaIP
+# w+4iI+HwjfvLv5cYETE9SPxRztkmjhgdbg5+fSVIwBnD1W+mUhoB5C7awKT6vk+M
+# wa4kMUmpVGly611gWeDjxfUz9ubBRxz3r3CSVfO9vwnjKNAg0A0oz1v66l79ff1m
+# x6/iY4TrpaxQJTSa1h/64q88WcXwcEOrqF61ZVTyxG91u1TJNX+g5Yn7wSVegnGN
+# CBu+II+TakT95JTcixpTyBN45p7oria4IGTmAzstMhm19urFoHYSUbHZHcecHlhv
+# qZdBdOhng/XmTdhlQ6GCArkwggK1BgkqhkiG9w0BCQYxggKmMIICogIBATBrMFsx
+# CzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQD
+# EyhHbG9iYWxTaWduIFRpbWVzdGFtcGluZyBDQSAtIFNIQTI1NiAtIEcyAgwkVLh/
+# HhRTrTf6oXgwDQYJYIZIAWUDBAIBBQCgggEMMBgGCSqGSIb3DQEJAzELBgkqhkiG
+# 9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIwMDkwODE4MDUzM1owLwYJKoZIhvcNAQkE
+# MSIEIPKTaU2P5OYsgXLBhD3B77tUfHSgr/uA07VozLSGYXEHMIGgBgsqhkiG9w0B
+# CRACDDGBkDCBjTCBijCBhwQUPsdm1dTUcuIbHyFDUhwxt5DZS2gwbzBfpF0wWzEL
+# MAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExMTAvBgNVBAMT
+# KEdsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gU0hBMjU2IC0gRzICDCRUuH8e
+# FFOtN/qheDANBgkqhkiG9w0BAQEFAASCAQAkH/6qWDkcKpVexhoW6NXzdbTQp6oh
+# JrEPly4ctilOcsaovAn4V6pK4A8h+SrMmKiIGSNk6YCEAufsTT2tAPt47biWsZA2
+# NicuMeuGzUXiN5umfT7TsI9ulTjoMt8ndlK+9Tq0kgY3rRemhqHdpIt2Q2oX1ZEf
+# /1Yd2fKAkUVxBmXuA1ukOOeBvZQlnzT5H0XDNPuoJ5LoHXTtBq5KSOcNCdcdrEBG
+# 4nwe2B3IB81NJFGaDHosOlRi/0hZ9aK8grRTY8Q7KCSLg53pJ+2RNRYkrAd4sprU
+# vrRJoW5htWV+YIBupg+OBOoGXq4puwOjlYmHRaxq64hYD7wlRkkk436N
+# SIG # End signature block
