@@ -5,10 +5,12 @@ set _SET_MYENV_FILE=_set.myenv.bat
 
 call _set.myenv.bat
 if "%MYENV_HOME%" == "" (
-    echo MYENV_HOME is not set in the %_SET_MYENV_FILE%.
-    call :unset_local
-    exit /b
-)
+    echo Definisco Variabile MYENV_HOME
+    SETX MYENV_HOME %CD%
+    echo ... Restart explorer 
+    taskkill /F /IM explorer.exe && START explorer.exe
+    IF NOT EXIST %MYENV_HOME%\env  mkdir MYENV_HOME%\env 
+   )
 
 set _ROLLBACK_PATHS_BATCH_FILE=%MYENV_HOME%\tmp\_rollback.paths.bat
 
