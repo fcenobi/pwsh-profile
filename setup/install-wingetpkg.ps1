@@ -59,7 +59,7 @@ winget install	FarManager.FarManager
 
 resetEnv Path
 resetEnv AppPath
-winget install	Microsoft.PowerToys
+#winget install	Microsoft.PowerToys
 resetEnv Path
 resetEnv AppPath
 winget install	Microsoft.WindowsTerminal
@@ -71,7 +71,7 @@ resetEnv AppPath
 winget install	WinSCP.WinSCP
 resetEnv Path
 resetEnv AppPath
-winget install	dbeaver.dbeaver
+#winget install	dbeaver.dbeaver
 resetEnv Path
 resetEnv AppPath
 winget install	Python.Python
