@@ -29,7 +29,7 @@ import-Module -Name posh-git             -Global -FORCE -ErrorAction Continue
 import-Module -Name npm-completion       -Global -FORCE -ErrorAction Continue
 import-Module -Name yarn-completion      -Global -FORCE -ErrorAction Continue
 import-module -name admintoolbox       -Global -FORCE -ErrorAction Continue
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-ObjectSystem.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 choco feature enable -n allowGlobalConfirmation
 
