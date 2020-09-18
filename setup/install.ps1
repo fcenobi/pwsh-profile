@@ -3,14 +3,14 @@
 # ----------------- #
 
 # TODO: Check OS type and ensure running on windows
-Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force
-Set-PSRepository -InstallationPolicy Trusted -Name PSGALLERY -FORCE
+#Set-ExecutionPolicy UNRESTRICTED -Scope LocalMachine -Force
+Set-PSRepository -InstallationPolicy Trusted -Name PSGALLERY 
 
 $gitrepoaccount = "fcenobi"
 $repo    = "pwsh-profile"
 $branch  = "master"
-
-msiexec.exe /package PowerShell-7.0.1-win-x64.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
+iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI"
+#msiexec.exe /package PowerShell-7.0.1-win-x64.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
 
 Write-Host "Checking winget..."
 
