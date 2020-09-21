@@ -18,8 +18,16 @@ if (!(Verify-Elevated)) {
 
 Write-Host "Configuring System..." -ForegroundColor "Yellow"
 
+
+# enable rdp
+Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0
+Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+#disable rdp
+#Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 1
+#Disable-NetFirewallRule -DisplayGroup "Remote Desktop"
+
 # Set Computer Name
-(Get-WmiObject Win32_ComputerSystem).Rename("PATTOP") | Out-Null
+#(Get-WmiObject Win32_ComputerSystem).Rename("PATTOP") | Out-Null
 
 ## Set DisplayName for my account. Use only if you are not using a Microsoft Account
 #$myIdentity=[System.Security.Principal.WindowsIdentity]::GetCurrent()
