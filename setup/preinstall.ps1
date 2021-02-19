@@ -90,8 +90,8 @@ winget install	dbeaver.dbeaver
 	
 #	Get-Content .\winget.txt | ForEach-Object {
 #		iex ("winget install -e " + $_)
-	}
-}
+#	}
+#}
 
 Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1
 Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
