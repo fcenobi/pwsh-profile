@@ -1,3 +1,6 @@
+Start-Process -FilePath 'C:\Program Files\Internet Explorer\iexplore.exe'
+Stop-Process -Name iexplore
+
 Write-Host "Checking winget..."
 
 Try{
@@ -15,9 +18,9 @@ Catch{
 	
 	Write-Host "Determining latest release"
 	$json = Invoke-WebRequest $releases
-	$tag = ($json | ConvertFrom-Json)[0].tag_name
-	$file = ($json | ConvertFrom-Json)[0].assets[0].name
-	
+	$tag = ($json | ConvertFrom-Json)[1].tag_name
+	$file = ($json | ConvertFrom-Json)[1].assets[1].name
+	Write-Host "https://github.com/$repo/releases/download/$tag/$file"
 	$download = "https://github.com/$repo/releases/download/$tag/$file"
 	$output = $PSScriptRoot + "\winget-latest.appxbundle"
 	Write-Host "Dowloading latest release"
