@@ -29,3 +29,29 @@ Catch{
 	Write-Host "Installing the package"
 	Add-AppxPackage -Path $output
 }
+
+
+#$wingetsettings=$env:LOCALAPPDATA\\Packages\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\\LocalState\\settings.json
+#
+#
+#{
+#    "$schema": "https://aka.ms/winget-settings.schema.json",
+#
+#    "source": {
+#        "autoUpdateIntervalInMinutes": 5
+#    },
+#
+#    "visual": {
+#        "progressBar": "accent"
+#    },
+#
+#    "experimentalFeatures": {
+#       "experimentalCmd": true,
+#       "experimentalArg": true,
+#       "experimentalMSStore": true,
+#       "list": true,
+#       "upgrade": true,
+#       "uninstall": true,
+#       "import": true
+#    }
+#}
